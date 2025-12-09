@@ -1,15 +1,20 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useEffect } from "react"
+
 import { StyleProvider } from "@ant-design/cssinjs"
-import { HeroUIProvider, ToastProvider } from "@heroui/react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ConfigProvider } from "antd"
+import { MessageInstance } from "antd/es/message/interface"
+import useMessage from "antd/es/message/useMessage"
 import zhCN from "antd/locale/zh_CN"
 import dayjs from "dayjs"
-import { NavigateOptions, useHref, useNavigate } from "react-router"
 
 import "dayjs/locale/zh-cn"
 
 dayjs.locale("zh-cn")
+
+export interface RegistryProps {
+    children?: ReactNode
+}
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,27 +29,23 @@ const queryClient = new QueryClient({
     },
 })
 
-export interface RegistryProps {
-    children?: ReactNode
-}
-
-declare module "@react-types/shared" {
-    interface RouterConfig {
-        routerOptions: NavigateOptions
-    }
+declare global {
+    var message: MessageInstance
 }
 
 const Registry: FC<RegistryProps> = ({ children }) => {
-    const navigate = useNavigate()
+    const [message, context] = useMessage()
+
+    useEffect(() => {
+        globalThis.message = message
+    }, [message])
 
     return (
         <QueryClientProvider client={queryClient}>
             <StyleProvider hashPriority="high">
-                <ConfigProvider locale={zhCN}>
-                    <HeroUIProvider locale="zh-CN" className="h-full" navigate={navigate} useHref={useHref}>
-                        <ToastProvider />
-                        {children}
-                    </HeroUIProvider>
+                <ConfigProvider locale={zhCN} theme={{ token: { fontFamily: "Source Han Sans VF" } }}>
+                    {context}
+                    {children}
                 </ConfigProvider>
             </StyleProvider>
         </QueryClientProvider>

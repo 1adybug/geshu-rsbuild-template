@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, stat, writeFile } from "fs/promises"
+import { mkdir, readdir, readFile, stat, writeFile } from "fs/promises"
 import { join, parse } from "path"
 
 await mkdir(".vscode", { recursive: true })
@@ -44,6 +44,7 @@ export async function createRouter() {
             nameCount[name] = 1
             return name
         }
+
         nameCount[name]++
         return `${name}${nameCount[name]}`
     }
@@ -85,7 +86,9 @@ export async function createRouter() {
         const loader = hasLoader ? getRouteExportName("loader") : undefined
         const hasShouldRevalidate = await checkFileExport({ path, name: "shouldRevalidate" })
         const shouldRevalidate = hasShouldRevalidate ? getRouteExportName("shouldRevalidate") : undefined
+
         const exports: string[] = []
+
         if (action) exports.push(`action as ${action}`)
         if (loader) exports.push(`loader as ${loader}`)
         if (shouldRevalidate) exports.push(`shouldRevalidate as ${shouldRevalidate}`)
@@ -131,22 +134,24 @@ export async function createRouter() {
         const path = getRoutePath(dirs)
         let layout: Router | undefined
         let page: Router | undefined
+
         let children: Router[] = []
 
         for (const item of content) {
             const stats = await stat(join(...dirs, item))
+
             if (stats.isDirectory()) {
                 const router = await createRouter(...dirs, item)
                 children.push(router)
                 continue
             }
+
             if (isLayout(item)) {
                 layout = await getRoute({ dirs, item })
                 continue
             }
-            if (!isGroup(item) && isPage(item)) {
-                page = await getRoute({ dirs, item })
-            }
+
+            if (!isGroup(item) && isPage(item)) page = await getRoute({ dirs, item })
         }
 
         if (!layout && !page) {

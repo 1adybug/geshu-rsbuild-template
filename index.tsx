@@ -1,12 +1,13 @@
 import { StrictMode } from "react"
-import ReactDOM from "react-dom/client"
+import { createRoot } from "react-dom/client"
 
 import App from "./App"
 
-import "@ant-design/v5-patch-for-react-19"
 import "./index.css"
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLDivElement).render(
+const root = createRoot(document.getElementById("root") as HTMLDivElement)
+
+root.render(
     <StrictMode>
         <App />
     </StrictMode>,
