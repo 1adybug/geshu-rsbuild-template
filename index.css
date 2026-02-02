@@ -37,3 +37,11 @@ body,
 button:disabled {
     cursor: not-allowed;
 }
+
+.ant-modal-body {
+    margin-top: 20px;
+}
+
+.ant-btn-icon {
+    display: flex;
+}

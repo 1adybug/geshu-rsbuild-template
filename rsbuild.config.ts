@@ -10,7 +10,7 @@ export default defineConfig({
         },
     },
     html: {
-        title: "geshu rsbuild template",
+        title: "格数科技",
         meta: {
             description: "powered by geshu",
         },
