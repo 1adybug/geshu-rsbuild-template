@@ -29,7 +29,7 @@ export function useLogin<TOnMutateResult = unknown>({ onMutate, onSuccess, onErr
         onSuccess(data, variables, onMutateResult, context) {
             cookieStorage.setItem("token", data.token)
 
-            context.client.invalidateQueries({ queryKey: ["get-account"] })
+            context.client.invalidateQueries({ queryKey: ["get-account", undefined] })
 
             message.open({
                 key,
