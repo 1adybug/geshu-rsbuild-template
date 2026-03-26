@@ -18,6 +18,7 @@ export interface ResponseData<T = any> {
 export type ResponseType = keyof ResponseData
 
 export interface RequestOptions<T extends ResponseType = "json"> extends Omit<RequestInit, "body" | "method"> {
+    // eslint-disable-next-line
     method?: "GET" | "POST" | "DELETE" | "HEAD" | "OPTIONS" | "PUT" | "PATCH" | "CONNECT" | "TRACE" | (string & {})
     /**
      * 响应的数据类型，默认 json
