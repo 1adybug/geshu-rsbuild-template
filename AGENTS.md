@@ -3,10 +3,9 @@
 ## Style Rules
 
 - 页面的 CSS 样式你应该尽量通过以下两种方式实现：
-
-  1. 对于 `Ant Design` 或者 `@heroui/react` 等组件库提供的组件，请在组件库提供的 `ConfigProvider` 等类似的全局配置组件进行修改，如果你需要修改某个组件的全局样式，你可以在 `@/components/Registry.tsx` 中进行修改，它包裹了整个应用，如果你只需要单独修改某个位置的某个组件，请使用 `ConfigProvider` 包裹你需要修改的组件
-  2. 对于一般样式，优先使用组件的 `className` 或者 `classNames` 或其他类名属性 + `tailwindcss` 实现
-  3. 有且仅有以上两种方式无法实现时，请你使用 `style` 属性或者在 css 文件中定义样式
+    1. 对于 `Ant Design` 或者 `@heroui/react` 等组件库提供的组件，请在组件库提供的 `ConfigProvider` 等类似的全局配置组件进行修改，如果你需要修改某个组件的全局样式，你可以在 `@/components/Registry.tsx` 中进行修改，它包裹了整个应用，如果你只需要单独修改某个位置的某个组件，请使用 `ConfigProvider` 包裹你需要修改的组件
+    2. 对于一般样式，优先使用组件的 `className` 或者 `classNames` 或其他类名属性 + `tailwindcss` 实现
+    3. 有且仅有以上两种方式无法实现时，请你使用 `style` 属性或者在 css 文件中定义样式
 
 - 当你使用 `flex` 布局时，对于宽度或者高度需要保持固定的子元素设置 `flex-none`
 - 对于 `React` 组件（也就是非 `div` 等 `html` 元素）的样式，请谨慎使用 `!important` 修改样式，请优先使用 `ConfigProvider` 或者组件暴露的属性（比如 `radius` / `shape`等）修改样式，最后再考虑使用 `!important`
@@ -292,7 +291,11 @@
             doSomething()
         }
 
-        return <div onClick={onClick} {...rest}>Hello World!</div>
+        return (
+            <div onClick={onClick} {...rest}>
+                Hello World!
+            </div>
+        )
     }
     ```
 
@@ -374,7 +377,6 @@
 
         ```typescript
         import { createUseQuery } from "soda-tanstack-query"
-
         import { queryUser } from "@/apis/queryUser"
 
         export const useQueryUser = createUseQuery({
@@ -389,7 +391,6 @@
         ```typescript
         import { isNonNullable } from "deepsea-tools"
         import { createUseQuery } from "soda-tanstack-query"
-
         import { getUser } from "@/apis/getUser"
 
         export function getUserOptional(id?: string | undefined) {
@@ -406,7 +407,6 @@
 
         ```typescript
         import { useMutation, UseMutationOptions } from "@tanstack/react-query"
-        
         import { addUser } from "@/apis/addUser"
 
         // UseMutationOptions 的泛型参数为 api 函数的返回值类型、错误类型（默认 `Error`）、请求参数类型、上下文类型
@@ -433,6 +433,7 @@
                 onSuccess(data, variables, onMutateResult, context) {
                     // 成功后刷新 user 相关的 query
                     context.client.invalidateQueries({ queryKey: ["query-user"] })
+
                     context.client.invalidateQueries({ queryKey: ["get-user", data.id] })
 
                     message.open({
