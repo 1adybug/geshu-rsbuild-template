@@ -41,7 +41,7 @@ const Registry: FC<RegistryProps> = ({ children }) => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <StyleProvider hashPriority="high">
+            <StyleProvider hashPriority="high" layer>
                 <ConfigProvider locale={zhCN} theme={{ token: { fontFamily: "Source Han Sans SC VF" } }}>
                     {context}
                     {children}
