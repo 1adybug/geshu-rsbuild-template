@@ -7,7 +7,6 @@ import { FormSubscribe } from "soda-antd"
 
 import { LoginParams } from "@/apis/login"
 
-import bg from "@/assets/login.webp"
 import logo from "@/assets/logo.svg?url"
 
 import { useLogin } from "@/hooks/useLogin"
@@ -86,7 +85,7 @@ const Page: FC = () => {
                     </Form>
                 </div>
             </div>
-            <div className="hidden bg-cover bg-bottom sm:block" style={{ backgroundImage: `url(${bg})` }} />
+            <div className="hidden bg-[url('@/assets/login.webp')] bg-cover bg-bottom sm:block" />
         </main>
     )
 }
