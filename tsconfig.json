@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         "lib": ["DOM", "ESNext"],
         "jsx": "react-jsx",
         "target": "ESNext",
