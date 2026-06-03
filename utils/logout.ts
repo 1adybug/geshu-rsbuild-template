@@ -1,4 +1,4 @@
-import { Account } from "@/apis/login"
+import type { Account } from "@/apis/login"
 
 import { queryClient } from "@/constants"
 

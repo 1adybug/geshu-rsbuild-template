@@ -1,4 +1,4 @@
-import { CookieAttributes, createCookieStorage } from "deepsea-tools"
+import { type CookieAttributes, createCookieStorage } from "deepsea-tools"
 
 import { CookiePrefix } from "@/constants"
 

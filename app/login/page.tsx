@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from "react"
+import { type FC, useEffect, useState } from "react"
 
 import { Button, Form, Input } from "antd"
 import { useForm } from "antd/es/form/Form"
 import FormItem from "antd/es/form/FormItem"
 import { FormSubscribe } from "soda-antd"
 
-import { LoginParams } from "@/apis/login"
+import type { LoginParams } from "@/apis/login"
 
 import logo from "@/assets/logo.svg?url"
 

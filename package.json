@@ -8,7 +8,7 @@
         "dev": "sdrr dev rsbuild dev --open",
         "preview": "rsbuild preview",
         "format": "prettier --write .",
-        "fg": "npm run format && git add . && git commit -m \"✨feature: format\"",
+        "fg": "npm run format && git add . && git commit -m \"feat: format\"",
         "prepare": "husky",
         "lint": "eslint ."
     },

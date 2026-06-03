@@ -1,6 +1,6 @@
 import { useId } from "react"
 
-import { useMutation, UseMutationOptions } from "@tanstack/react-query"
+import { type UseMutationOptions, useMutation } from "@tanstack/react-query"
 
 import { login } from "@/apis/login"
 

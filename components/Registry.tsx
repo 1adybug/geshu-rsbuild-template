@@ -1,9 +1,9 @@
-import { FC, ReactNode, useEffect } from "react"
+import { type FC, type ReactNode, useEffect } from "react"
 
 import { StyleProvider } from "@ant-design/cssinjs"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ConfigProvider } from "antd"
-import { MessageInstance } from "antd/es/message/interface"
+import type { MessageInstance } from "antd/es/message/interface"
 import useMessage from "antd/es/message/useMessage"
 import zhCN from "antd/locale/zh_CN"
 import dayjs from "dayjs"
