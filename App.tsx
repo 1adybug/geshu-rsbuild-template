@@ -1,6 +1,6 @@
 import type { FC } from "react"
 
-import Router from "./components/Router"
+import { Router } from "./components/Router"
 
 const App: FC = () => <Router />
 
