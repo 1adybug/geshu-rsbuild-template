@@ -1,5 +1,12 @@
 overrides:
-    deepsea-tools@5.48.2>xlsx: "-"
+    deepsea-tools@5.48.3>xlsx: "-"
 allowBuilds:
     core-js: true
     unrs-resolver: true
+minimumReleaseAgeExclude:
+    - deepsea-tools
+    - sdrr
+    - soda-antd
+    - soda-hooks
+    - soda-react
+    - soda-tanstack-query
