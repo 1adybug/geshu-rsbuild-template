@@ -1,3 +1,5 @@
-onlyBuiltDependencies:
-    - core-js
-    - unrs-resolver
+overrides:
+    deepsea-tools@5.48.2>xlsx: "-"
+allowBuilds:
+    core-js: true
+    unrs-resolver: true
