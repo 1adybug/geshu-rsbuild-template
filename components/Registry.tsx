@@ -25,9 +25,7 @@ declare global {
 export const Registry: FC<RegistryProps> = ({ children }) => {
     const [message, context] = useMessage()
 
-    useEffect(() => {
-        globalThis.message = message
-    }, [message])
+    useEffect(() => void (globalThis.message = message), [message])
 
     return (
         <QueryClientProvider client={queryClient}>

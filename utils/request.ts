@@ -36,6 +36,7 @@ export async function request<T = any>(input: string | URL, options?: RequestOpt
 export async function request<P extends Exclude<ResponseType, "json">>(input: string | URL, options: RequestOptions<P>): Promise<ResponseData[P]>
 
 export async function request<T = any, P extends ResponseType = "json">(input: string | URL, options?: RequestOptions<P>): Promise<ResponseData<T>[P]> {
+    // eslint-disable-next-line
     let { headers, type = "json", body, base, search = {}, method, hideError, ...rest } = options ?? {}
 
     const url = new URL(input, typeof input === "string" ? base || ApiOrigin?.trim() : undefined)
