@@ -3,6 +3,17 @@ import { pluginReact } from "@rsbuild/plugin-react"
 import { pluginSvgr } from "@rsbuild/plugin-svgr"
 import { sdrrRsbuildPlugin } from "sdrr/rsbuild"
 
+function getDevelopmentPort() {
+    const value = process.env.PORT?.trim()
+    if (!value) return 5173
+
+    const port = Number(value)
+
+    if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error(`PORT 必须是 1 到 65535 之间的整数，当前值为 ${JSON.stringify(value)}`)
+
+    return port
+}
+
 export default defineConfig({
     source: {
         entry: {
@@ -24,7 +35,7 @@ export default defineConfig({
         sdrrRsbuildPlugin(),
     ],
     server: {
-        port: 5173,
+        port: getDevelopmentPort(),
     },
     output: {
         polyfill: "entry",
